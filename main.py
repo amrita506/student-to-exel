@@ -1,10 +1,12 @@
 a = True #other buttons not clicked
+data = {}
 import pandas as pd
 from tkinter import *
 root_menu = Tk()
 root_menu.title("Welcome")
 def main():
     if a == True:
+        file_name = entry_directory.get()
         root_menu.destroy()
         root_main = Tk()
         root_main.title("student details to exel")
@@ -37,7 +39,7 @@ def main():
         def enter():
             data[entry_student.get()] = [entry_maths.get(),entry_science.get(),entry_english.get(),entry_social.get()]
             df = pd.DataFrame(data)
-            df.to_excel (r'/home/shikhar/Desktop/jupyter/pandas_data.xlsx', index = False, header=True)
+            df.to_excel (file_name , header=True)
             entry_student.delete(0, END)
             entry_maths.delete(0, END)
             entry_science.delete(0, END)
@@ -50,7 +52,6 @@ entry_directory = Entry(root_menu,width = 50)
 if entry_directory.get != "":
     def directory():
         a = True
-        directory = entry_directory.get() 
         button_main = Button(root_menu,text = "Continue=>",command = main)
         button_main.grid(row = 1, column = 3)
         entry_directory.get()
